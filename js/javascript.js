@@ -178,3 +178,37 @@ var BlogView = Backbone.View.extend({
     }
     })
  });
+
+
+
+
+
+ var User = Backbone.Model.extend();
+
+
+
+ var Users = Backbone.Collection.extend({
+        model: User,
+        url:'https://jsonplaceholder.typicode.com/users'
+ });
+
+ var tableUser = Backbone.View.extend({
+     el: $('#wrapper'),
+     initialize: function(){
+         this.render()
+     },
+     render: function(){
+         var self = this;
+         var users = new Users();
+         users.fetch({
+             success:function(users){
+                var variable = { users:users.models }
+                var template = _.template($('#table_template').html())
+                self.$el.html(template(variable))
+             }
+         })
+     }
+ });
+ 
+ new tableUser();
+

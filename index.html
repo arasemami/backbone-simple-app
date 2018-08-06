@@ -28,7 +28,9 @@
         <p> <h2 class="text-center p-4" style="color: #222; text-shadow: -3px 1px 2px #ccc; font-size: 55px; ">Backbone JS Simple App</h2></p>
     </div>
 
-            <div class="container">
+            <div class="container pb-5">
+                <p><h3>Insert data and update that!</h3></p>
+                <hr>
                     <table class="table table-hover table-dark">
                             <thead>
                                 <tr>
@@ -38,7 +40,7 @@
                                     <th scope="col">Action</th>
                                 </tr>
                                 <tr>
-                                    <td scope="row"><input placeholder="Pleas inser author" class="form-control author-input " ></td>
+                                    <td scope="row"><input placeholder="Pleas insert author" class="form-control author-input " ></td>
                                     <td scope="row"><input placeholder="title" class="form-control title-input " ></td>
                                     <td scope="row"><input placeholder="http://" class="form-control url-input " ></td>
                                     <td scope="row"><button class="btn btn-primary add-blog col-12" >Add</button></td>
@@ -50,6 +52,17 @@
             </div>
 
 
+            <div class="container pt-5">
+                    <p><h3>Fetch data from API server</h3></p>
+                    <hr>
+
+                    <div class="container" id="wrapper"></div>
+
+
+
+            </div>
+
+            <!-- Insert data and update that! -->
             <script type="text/template" class="blogs-list-template">
                 <td><span class="author"><%= author %></span> </td>
                 <td><span class="title"><%= title %></span> </td>
@@ -66,8 +79,35 @@
                     </div>
                </td>
                <!-- END Button action  -->
+            </script>
 
-        
+
+            <script type="text/javascript" id="table_template">
+                
+                <table class="table table-hover table-dark ">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>phone</th>
+                            <th>web</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% _.each(users, function(user) {  %>
+                        <tr>
+                            <td><%= user.get('id') %></td>  
+                            <td><%= user.get('name') %></td>  
+                            <td><%= user.get('email') %></td>  
+                            <td><%= user.get('phone') %></td>  
+                            <td><%= user.get('website') %></td>  
+                             
+                        </tr>   
+                        
+                        <% }) %>
+                    </tbody>
+                </table>
             </script>
 
             <script src="js/jquery-3.3.1.min.js"></script>  <!-- number 1 in importent -->
