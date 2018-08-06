@@ -155,6 +155,14 @@ var BlogView = Backbone.View.extend({
 
  $(document).ready(function(){
     $('.add-blog').on('click', function(){
+        
+         if($('.author-input').val() == ''){
+            swal("The all fild is requirement!");
+            swal("The requirement Fild", "Please fill any input");
+
+         }
+         else{
+       
         var blog = new Blog({
             author: $('.author-input').val(),
             title: $('.title-input').val(),
@@ -167,5 +175,6 @@ var BlogView = Backbone.View.extend({
 
        // console.log(blog.toJSON());
         blogs.add(blog);
+    }
     })
  });
