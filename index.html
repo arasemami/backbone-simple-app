@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Backbon Simple App</title>
+    <link rel="icon" href="favicon-32x32.png" type="image/gif" sizes="16x16">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -22,8 +23,9 @@
 <body>
     
 
-    <div class="container p-2">
-        <h2 class="text-center p-4">Backbone Simple App</h2>
+    <div class="container p-5 text-center">
+       <img src="logo.png" width="100" alt="Backbone">
+        <p> <h2 class="text-center p-4" style="color:#333333; ">Backbone JS Simple App</h2></p>
     </div>
 
             <div class="container">
@@ -36,10 +38,10 @@
                                     <th>Action</th>
                                 </tr>
                                 <tr>
-                                    <td> <input class="form-control author-input " ></td>
-                                    <td><input class="form-control title-input " ></td>
-                                    <td><input class="form-control url-input " ></td>
-                                    <td><button class="btn btn-primary add-blog " >Add</button></td>
+                                    <td><input placeholder="Pleas inser author" class="form-control author-input " ></td>
+                                    <td><input placeholder="title" class="form-control title-input " ></td>
+                                    <td><input placeholder="http://" class="form-control url-input " ></td>
+                                    <td><button class="btn btn-primary add-blog col-12" >Add</button></td>
                                 </tr>
                             </thead>
                             <tbody class="blogs-list"></tbody>
