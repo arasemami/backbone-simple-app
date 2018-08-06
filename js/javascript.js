@@ -5,10 +5,7 @@ var Blog = Backbone.Model.extend({
         author:'',
         title:'',
         url:''
-
     },
-
-
 });
 
 
@@ -51,22 +48,68 @@ var BlogView = Backbone.View.extend({
     initialize: function(){
         this.template  = _.template($('.blogs-list-template').html());
     },
+    // creeat events for our table like edit , update , delete and cancel
     events: {
-        'click .edit-blog': 'edit'
+        'click .edit-blog': 'edit',
+        'click .update-blog':'update',
+        'click .cancel':'cancel',
+        'click .delete-blog': 'delete'
     },
+    // Follow our event like as funcation now ---->
     edit: function(){
+
+        // Make control button after click edit button show update and visiblae pas button --->
+        
         $('.edit-blog').hide();
         $('.delete-blog').hide();
-        $('.update-blog').show();
-        $('cancel').show();
+        this.$('.update-blog').show();
+        this.$('.cancel').show();
+
+        // Get data from table and put in variable --->
 
         var author = this.$('.author').html();
         var title = this.$('.title').html();
         var url = this.$('.url').html();
 
+        // Creat new filed for update input  --->
+
         this.$('.author').html('<input  type="text" class="form-control author-update" value="' + author + '">')
         this.$('.title').html('<input  type="text" class="form-control title-update" value="' + title + '">')
         this.$('.url').html('<input  type="text" class="form-control url-update" value="' + url + '">')
+    },
+    update:function() {
+       
+        this.model.set('author', $('.author-update').val());
+        this.model.set('title', $('.title-update').val());
+        this.model.set('url', $('.url-update').val());
+    },
+    cancel:function(){
+        blogsView.render();
+    },
+    delete:function(){
+       
+        // Show aler with sweet alert -->
+
+        swal({
+            title: "Are you sure?",
+            text: "Do you want to delete this record?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+              });
+              this.model.destroy();
+            } else {
+              swal("Your imaginary file is safe!");
+              
+            }
+          });
+
+       
     },
     render: function(){
         this.$el.html(this.template( this.model.toJSON()));
@@ -75,6 +118,10 @@ var BlogView = Backbone.View.extend({
     }
 });
 
+
+
+ 
+
 // Backbone View All Blogs
 
  var BlogsView = Backbone.View.extend({
@@ -82,7 +129,15 @@ var BlogView = Backbone.View.extend({
      model: blogs,
      el: $('.blogs-list'),
      initialize: function() {
+         var self= this;
          this.model.on('add',this.render, this );
+         this.model.on('change', function(){
+            setTimeout(function(){
+                self.render();
+            },30 );
+         } ,this);
+         this.model.on('remove', this.render, this);
+
      },
      render: function(){
          var self = this;
