@@ -9,4 +9,4 @@
 
 `sudo npm install -g live-server`
 
-`livw-server`
+`live-server`
