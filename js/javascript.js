@@ -41,7 +41,7 @@ var blogs = new Blogs([blog1,blog2]);
 
 
 
-// Backbone Views
+// Backbone Views for one Blog
 
 
 var BlogView = Backbone.View.extend({
@@ -52,18 +52,20 @@ var BlogView = Backbone.View.extend({
         this.template  = _.template($('.blogs-list-template').html());
     },
     render: function(){
-        this.$el.html(this.template({model: this.model.toJSON()}))
+        this.$el.html(this.template( this.model.toJSON()));
+        
+        return this;
     }
 });
 
 // Backbone View All Blogs
 
- var BlogsViews = Backbone.View.extend({
+ var BlogsView = Backbone.View.extend({
 
      model: blogs,
      el: $('.blogs-list'),
      initialize: function() {
-         this.model.on('add',this.render(), this );
+         this.model.on('add',this.render, this );
      },
      render: function(){
          var self = this;
@@ -71,9 +73,13 @@ var BlogView = Backbone.View.extend({
         _.each(this.model.toArray(), function(blog){
             self.$el.append((new BlogView({model: blog})).render().$el);
         });
+       
+        return this;
      }
 
  });
+
+ var blogsView = new BlogsView();
 
  $(document).ready(function(){
     $('.add-blog').on('click', function(){
@@ -83,6 +89,7 @@ var BlogView = Backbone.View.extend({
             url: $('.url-input').val()
 
         });
-        console.log(blog);
+        console.log(blog.toJSON());
+        blogs.add(blog);
     })
  });

@@ -15,10 +15,7 @@
 
 
 
-    <script src="js/jquery-3.3.1.min.js"></script>  <!-- number 1 in importent -->
-    <script src="js/underscore-min.js"></script>    <!-- number 2 in importent -->
-    <script src="js/backbone-min.js"></script>      <!-- number 3 in importent -->
-    <script src="js/javascript.js"></script>       
+     
 
   
 </head>
@@ -45,7 +42,7 @@
                                     <td><button class="btn btn-primary add-blog " >Add</button></td>
                                 </tr>
                             </thead>
-                            <tBody class="blogs-list"></tBody>
+                            <tbody class="blogs-list"></tbody>
                         </table>
 
             </div>
@@ -53,10 +50,17 @@
 
             <script type="text/template" class="blogs-list-template">
                 <td><span class="author"><%= author %></span> </td>
-                <td><span class="author"><%= author %></span> </td>
-                <td><span class="author"><%= author %></span> </td>
-                <td><button class=" btn  btn-warning edit-blog">Edit</button> </td>
+                <td><span class="title"><%= title %></span> </td>
+                <td><span class="url"><%= url %></span> </td>
+                <td><button class=" btn  btn-warning edit-blog">Edit</button>
+                    <button class=" btn  btn-dangers delete-blog">Delete</button>
+                <button class=" btn  btn-warning edit-blog">Edit</button></td>
         
             </script>
+
+            <script src="js/jquery-3.3.1.min.js"></script>  <!-- number 1 in importent -->
+            <script src="js/underscore-min.js"></script>    <!-- number 2 in importent -->
+            <script src="js/backbone-min.js"></script>      <!-- number 3 in importent -->
+            <script src="js/javascript.js"></script>  
 </body>
 </html>
